@@ -1,23 +1,28 @@
 import React from "react";
-import API from "../utils/API";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
-function UserDetail() {
-  let { user } = useParams();
-  let users = {};
-  API.forEach( person => {
-    if (person === user) {
-      users = user
-    }
-  });
+function UserDetail(props) {
+  // let { user } = useParams();
+  // let users = {};
+  // API.forEach( person => {
+  //   if (person === user) {
+  //     users = user
+  //   }
+  // });
 
   return (
     <div className="card">
       <div className="card-body">
-        <h5 className="card-title">{`Name: ${users.results.name.first} ${users.results.name.last}`}</h5>
-        <p className="card-text">Phone: {users.results.phone}</p>
-        <p className="card-text">Email: {users.results.email}</p>
-        <p className="card-text">DOB: {users.results.dob}</p>
+        <h5 className="card-title">Image</h5>
+          <img alt={props.name} className="img-fluid" src={props.src} style={{ margin: "0 auto" }} />
+        <h5 className="card-title">Name</h5>
+          <p>{props.name}</p>
+        <h5 className="card-title">Phone</h5>
+          <p>{props.phone}</p>
+        <h5 className="card-title">Email:</h5>
+          <p>{props.email}</p>
+        <h5 className="card-title">DOB</h5>
+          <p>{props.dob}</p>
       </div>
     </div>
   );

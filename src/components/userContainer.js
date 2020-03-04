@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API";
+import UserDetail from "./userDetail";
 
 class UserContainer extends Component {
   constructor(props) {
@@ -10,8 +11,8 @@ class UserContainer extends Component {
     }
   }
 
-  componentDidMount() {
-    this.searchUser();
+  componentDidMount(results) {
+    this.searchUser(results);
   }
 
   searchUser = query => {
@@ -49,6 +50,30 @@ class UserContainer extends Component {
             <button className="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
           </div>
         </div>
+      
+      <div className="card">
+      <div className="card-body">
+      {this.state.result.Title ? (
+        <UserDetail
+          src={this.state.results.picture.thumbnail}
+          name={`${this.state.results.Title}${this.state.results.name.last}`}
+          phone={this.state.results.phone}
+          email={this.state.results.email}
+          DOB={this.state.results.dob}
+        />
+      ) : (
+        <h3>No Results to Display</h3>
+      )}
+          {/* <h5 className="card-title">Name</h5>
+            <p>{`${this.state.results.name.first} ${this.state.results.name.last}`}</p>
+          <h5 className="card-title">Phone</h5>
+            <p className="card-text">{this.state.results.phone}</p>
+          <h5 className="card-title">Email:</h5>
+            <p className="card-text">{this.state.results.email}</p>
+          <h5 className="card-title">DOB</h5>
+            <p className="card-text">{this.state.results.dob}</p>*/}
+        </div> 
+      </div>
       </div>
     )
   }
