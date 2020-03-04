@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASEURL = 'https://jsonplaceholder.typicode.com/users';
+const BASEURL = 'https://randomuser.me/api/';
 
 export default {
   search: function(query) {

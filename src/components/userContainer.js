@@ -12,7 +12,16 @@ class UserContainer extends Component {
   }
 
   componentDidMount(results) {
-    this.searchUser(results);
+    this.displayUser(results);
+  }
+
+  displayUser = query => {
+    API.search(query).then(res =>
+      this.setState({
+        results: res.data
+      })).catch(err => console.log(err));
+      console.log(query);
+
   }
 
   searchUser = query => {
