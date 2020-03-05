@@ -1,4 +1,5 @@
 import React from "react";
+import Moment from 'react-moment';
 // import { useParams } from "react-router-dom";
 
 function UserDetail(props) {
@@ -22,7 +23,9 @@ function UserDetail(props) {
         <h5 className="card-title">Email:</h5>
           <p>{props.email}</p>
         <h5 className="card-title">DOB</h5>
-          <p>{props.dob}</p>
+          <Moment format="DD/MM/YYYY">
+            <p>{props.DOB}</p>
+          </Moment>
       </div>
     </div>
   );

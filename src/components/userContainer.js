@@ -6,22 +6,23 @@ class UserContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      result: {},
+      results: [],
       search: ""
     }
   }
 
   componentDidMount(results) {
     this.displayUser(results);
+    console.log(results)
   }
 
   displayUser = query => {
-    API.search(query).then(res =>
+    API.search(query).then(res => {
+      console.log(res.data.results)
       this.setState({
-        results: res.data
-      })).catch(err => console.log(err));
-      console.log(query);
-
+        results: res.data.results
+      })
+    }).catch(err => console.log(err));
   }
 
   searchUser = query => {
@@ -62,25 +63,22 @@ class UserContainer extends Component {
       
       <div className="card">
       <div className="card-body">
-      {this.state.result.Title ? (
-        <UserDetail
-          src={this.state.results.picture.thumbnail}
-          name={`${this.state.results.Title}${this.state.results.name.last}`}
-          phone={this.state.results.phone}
-          email={this.state.results.email}
-          DOB={this.state.results.dob}
-        />
+      {this.state.results ? (
+        this.state.results.map(user => {
+          return(
+            <UserDetail
+              src={user.picture.thumbnail}
+              name={`${user.name.first} ${user.name.last}`}
+              phone={user.phone}
+              email={user.email}
+              DOB={user.dob}
+            />
+          )
+        })
+        
       ) : (
         <h3>No Results to Display</h3>
       )}
-          {/* <h5 className="card-title">Name</h5>
-            <p>{`${this.state.results.name.first} ${this.state.results.name.last}`}</p>
-          <h5 className="card-title">Phone</h5>
-            <p className="card-text">{this.state.results.phone}</p>
-          <h5 className="card-title">Email:</h5>
-            <p className="card-text">{this.state.results.email}</p>
-          <h5 className="card-title">DOB</h5>
-            <p className="card-text">{this.state.results.dob}</p>*/}
         </div> 
       </div>
       </div>
