@@ -3,14 +3,6 @@ import Moment from 'react-moment';
 // import { useParams } from "react-router-dom";
 
 function UserDetail(props) {
-  // let { user } = useParams();
-  // let users = {};
-  // API.forEach( person => {
-  //   if (person === user) {
-  //     users = user
-  //   }
-  // });
-
   return (
     <div className="card">
       <div className="card-body">
@@ -28,8 +20,7 @@ function UserDetail(props) {
           </Moment>
       </div>
     </div>
-  );
-  
+  ); 
 }
 
 export default UserDetail;

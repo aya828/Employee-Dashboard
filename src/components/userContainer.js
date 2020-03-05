@@ -67,6 +67,7 @@ class UserContainer extends Component {
         this.state.results.map(user => {
           return(
             <UserDetail
+              key={user.index}
               src={user.picture.thumbnail}
               name={`${user.name.first} ${user.name.last}`}
               phone={user.phone}
