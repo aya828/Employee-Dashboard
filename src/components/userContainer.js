@@ -15,30 +15,26 @@ class UserContainer extends Component {
 
   componentDidMount(results) {
     this.displayUser(results);
-    this.setState({filtered: this.props.items})
+    this.setState({filtered: this.props.results})
     console.log(results)
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(props) {
     this.setState({
-      filtered: nextProps.items
+      filtered: props.results
     });
   }
 
   handleChange(e) {
-    this.handleChange = this.handleChange.bind(this);
-    let currentList = [];
     let newList = [];
-    if (e.target.value !== "") {
-      currentList = this.props.items;
-      newList = currentList.filter(item => {
-        const lc = item.toLowerCase();
-        const filter = e.target.value.toLowerCase();
-        return lc.includes(filter);
-      });
+    let currentList = [];
+    if (e.target.value === "") {
+      currentList = this.state.results;
     } else {
-      newList = this.props.items;
-    }
+      let newList = currentList.filter(item => {
+        console.log(item);
+        return newList.includes(e.target.value);
+    })}
     this.setState({
       filtered: newList
     });
@@ -83,7 +79,7 @@ class UserContainer extends Component {
           </div>
         </div>
         <div className="input-group mb-3">
-          <input type="text" className="form-control" onChange={this.handleChange} placeholder="Search a user" aria-label="Recipient's username" aria-describedby="button-addon2" />
+          <input type="text" className="form-control" onChange={this.handleChange.bind(this)} placeholder="Search a user" aria-label="Recipient's username" aria-describedby="button-addon2" />
           <div className="input-group-append">
             <button className="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
           </div>
